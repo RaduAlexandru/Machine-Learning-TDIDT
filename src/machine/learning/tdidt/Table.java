@@ -66,10 +66,10 @@ class Table {
                 //Put that row into table left
                 table_left.addRow();
                 for (int j = 0; j < this.cols(); j++) {
-                    if (j != atribute) {
+                    //if (j != atribute) {
                         //int val=this.get(i, j);
                         table_left.getRow(child_row).add(this.get(i, j));
-                    }
+                    //}
                 }
                 child_row++;
             }
@@ -80,9 +80,9 @@ class Table {
                 //Put that row into table right
                 table_right.addRow();
                 for (int j = 0; j < this.cols(); j++) {
-                    if (j != atribute) {
+                    //if (j != atribute) {
                         table_right.getRow(child_row).add(this.get(i, j));
-                    }
+                    //}
                 }
                 child_row++;
             }

@@ -98,6 +98,7 @@ class TreeBuilder {
             System.out.println("Stop, atribute is -1 in TreeBuiderl.chooseBestATrib");
         }*/
 
+        //System.out.println("");
         return bestAtr;
 
     }
