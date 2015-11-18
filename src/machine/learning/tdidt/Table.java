@@ -97,7 +97,7 @@ class Table {
     double entropy() {
 
         if (this.rows()==0){
-            System.out.println("stop, division by 0 in table.entropy");
+            //System.out.println("stop, division by 0 in table.entropy");
             //By splitting with this we gain a table that has no rows, and therefoew we won't gain any infrmation. Return a -1 to indicate to go and check the next atribute
             return -1;
         }
@@ -108,8 +108,16 @@ class Table {
         double divison= this.positives() / this.rows();
         double log_1=log2(this.positives() / this.rows());
         
+        /*System.out.println("positives" + this.positives());
+        System.out.println("negatives" + this.negatives());
+        System.out.println("total" + this.rows());*/
+        
+        if (this.positives()==0 || this.negatives()==0)  //The log will be zero so we retun 0 as to show there is no entropy
+            return 0.0;
+        
         entr = -((double)this.positives() / (double)this.rows() * log2((double)this.positives() / (double)this.rows())) - 
                 ((double)this.negatives() / (double)this.rows() * log2((double)this.negatives() / (double)this.rows()));
+        //System.out.println("entropy is " + entr);
         return entr;
     }
 
