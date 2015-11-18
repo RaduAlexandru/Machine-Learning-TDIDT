@@ -45,8 +45,8 @@ class TreeBuilder {
         node.table.splitByAtrib(node.atribute, table_left, table_right);
 
         //Create two children for the current node  //parameters: identifier,parent_result,atribute of split,id_child1, id_child2, table
-        node.child_left = new Node(node.id + node.id, "yes", -1, -1, -1, table_left);
-        node.child_right = new Node(node.id + node.id+1, "no", -1, -1, -1, table_right);
+        node.child_left = new Node(node.id + node.id, "1", -1, -1, -1, table_left);
+        node.child_right = new Node(node.id + node.id+1, "0", -1, -1, -1, table_right);
         node.id_child_left = node.id + node.id;
         node.id_child_right = node.id + node.id+1;
 

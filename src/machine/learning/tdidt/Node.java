@@ -33,8 +33,17 @@ class Node {
         //throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
-    void print() {
-        System.out.println("Node: " + id + " " + result_of_parent + " " + atribute + " " + id_child_left + " " + id_child_right );
+    String print() {
+    	
+    	String result = id + " " + result_of_parent + " " + atribute;
+    	
+    	if(id_child_left!= -1)
+    		result += " " + id_child_left;
+    		
+    	if(id_child_right != -1)
+    		result += " " + id_child_right;;
+    	
+       return result;
         //throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 

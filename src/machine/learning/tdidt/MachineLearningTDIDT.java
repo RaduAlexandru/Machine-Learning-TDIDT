@@ -8,6 +8,7 @@ package machine.learning.tdidt;
 import static com.sun.xml.internal.fastinfoset.alphabet.BuiltInRestrictedAlphabets.table;
 import java.io.File;
 import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.Queue;
@@ -21,8 +22,9 @@ public class MachineLearningTDIDT {
 
     /**
      * @param args the command line arguments
+     * @throws IOException 
      */
-    public static void main(String[] args) throws FileNotFoundException {
+    public static void main(String[] args) throws IOException {
         // TODO code application logic here
         
         //Read all the atributes in an array 
@@ -42,23 +44,14 @@ public class MachineLearningTDIDT {
         table.print();
         
         //create a node with parameters: identifier,parent_result,atribute of split,id_child1, id_child2, table
-        Node root=new Node(1,"NULL",-1,-1,-1,table);
+        Node root=new Node(1,"-1",-1,-1,-1,table);
         TreeBuilder builder= new TreeBuilder();
         builder.create(root);
         
         //Now from root we should have all the other nodes
         //Print the nodes
-        Queue<Node> q = new LinkedList<>();
-        
-        q.add(root);
-        while(!q.isEmpty()){ 
-            q.peek().print();
-            if (q.peek().child_left!=null)
-                q.add(q.peek().child_left);
-            if (q.peek().child_right!=null)
-                q.add(q.peek().child_right);
-            q.poll();
-        }
+        TableWriter writer= new TableWriter();
+        writer.write(root);
         
         
         //Grab the test data
@@ -76,6 +69,8 @@ public class MachineLearningTDIDT {
         
         
     }
+
+
     
     
     
