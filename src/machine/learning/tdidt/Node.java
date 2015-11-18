@@ -27,7 +27,14 @@ class Node {
         id_child_left=_id_child_left;
         id_child_right=_id_child_right;
         table=_table;
+        child_left=null;
+        child_right=null;
         
+        //throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    void print() {
+        System.out.println("Node: " + id + " " + result_of_parent + " " + atribute + " " + id_child_left + " " + id_child_right );
         //throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 

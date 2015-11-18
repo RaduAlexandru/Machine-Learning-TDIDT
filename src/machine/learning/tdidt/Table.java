@@ -56,51 +56,74 @@ class Table {
         //grabs an atribute and splits by the atribute into two other tables, the one on the left (1s) on that atrib and right (0s) on the specified atrib
 
         //I think you also leave out the column of that atribute but i'm not sure
-        table_left = new Table();
-        table_right = new Table();
 
+        if (atribute==-1)
+            System.out.println("stop, atribute is -1 in Table.splitbyatrib");
+        
+        int child_row=0;
         for (int i = 0; i < this.rows(); i++) {
             if (this.get(i, atribute) == 1) {
                 //Put that row into table left
                 table_left.addRow();
                 for (int j = 0; j < this.cols(); j++) {
                     if (j != atribute) {
-                        table_left.getRow(i).add(this.get(i, j));
+                        //int val=this.get(i, j);
+                        table_left.getRow(child_row).add(this.get(i, j));
                     }
                 }
+                child_row++;
             }
+        }
+        child_row=0;
+        for (int i = 0; i < this.rows(); i++) {
             if (this.get(i, atribute) == 0) {
                 //Put that row into table right
                 table_right.addRow();
                 for (int j = 0; j < this.cols(); j++) {
                     if (j != atribute) {
-                        table_right.getRow(i).add(this.get(i, j));
+                        table_right.getRow(child_row).add(this.get(i, j));
                     }
                 }
+                child_row++;
             }
 
         }
+        
+        //System.out.println("finalizing split");
 
         //throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
     double entropy() {
 
-        double entr;
-        entr = -(this.positives() / this.rows() * log2(this.positives() / this.rows())) - 
-                (this.negatives() / this.rows() * log2(this.negatives() / this.rows()));
+        if (this.rows()==0){
+            System.out.println("stop, division by 0 in table.entropy");
+            //By splitting with this we gain a table that has no rows, and therefoew we won't gain any infrmation. Return a -1 to indicate to go and check the next atribute
+            return -1;
+        }
+        double entr=0.0;
+        
+        double test1=this.positives();
+        double rows_test=this.rows();
+        double divison= this.positives() / this.rows();
+        double log_1=log2(this.positives() / this.rows());
+        
+        entr = -((double)this.positives() / (double)this.rows() * log2((double)this.positives() / (double)this.rows())) - 
+                ((double)this.negatives() / (double)this.rows() * log2((double)this.negatives() / (double)this.rows()));
         return entr;
     }
 
-    public static double logb(double a, double b) {
+    public  double logb(double a, double b) {
+        double test=Math.log(a) / Math.log(b);
         return Math.log(a) / Math.log(b);
     }
 
-    public static double log2(double a) {
+    public  double log2(double a) {
+        double test=a;
         return logb(a, 2);
     }
 
-    private int positives() {
+    public int positives() {
         
         int positives=0;
         for (int i = 0; i < this.rows(); i++) {
@@ -111,7 +134,7 @@ class Table {
         
     }
 
-    private int negatives() {
+    public int negatives() {
         int negatives=0;
         for (int i = 0; i < this.rows(); i++) {
             if (this.get(i, 0)==0)
