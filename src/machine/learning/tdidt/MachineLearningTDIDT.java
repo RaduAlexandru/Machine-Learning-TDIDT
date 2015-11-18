@@ -61,7 +61,17 @@ public class MachineLearningTDIDT {
         }
         
         
+        //Grab the test data
+        Table test_table= new Table();
+        reader.read("SPECT.test",test_table);
+      
+        Tester tester=new Tester();
+        int successes=0;
+        successes=tester.test(root,test_table);
+        double accuracy=(double)successes/(double)test_table.rows();
+        System.out.println("Acuracy of " + accuracy);
         
+ 
         
         
         
