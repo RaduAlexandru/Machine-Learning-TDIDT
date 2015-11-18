@@ -10,7 +10,7 @@ package machine.learning.tdidt;
  * @author Alex
  */
 class Node {
-    int identifier;
+    int id;
     String result_of_parent;
     int atribute;
     int id_child_left;
@@ -18,9 +18,10 @@ class Node {
     Table table;
     Node child_left; //References to those nodes
     Node child_right;
+    
 
-    Node(int _identifier, String _result_of_parent, int _atribute, int _id_child_left, int _id_child_right, Table _table) {
-        identifier=_identifier;
+    Node(int _id, String _result_of_parent, int _atribute, int _id_child_left, int _id_child_right, Table _table) {
+        id=_id;
         result_of_parent=_result_of_parent;
         atribute=_atribute;
         id_child_left=_id_child_left;
@@ -29,5 +30,7 @@ class Node {
         
         //throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
+
+   
     
 }
