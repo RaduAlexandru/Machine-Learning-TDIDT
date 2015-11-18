@@ -45,10 +45,10 @@ class TreeBuilder {
         node.table.splitByAtrib(node.atribute, table_left, table_right);
 
         //Create two children for the current node  //parameters: identifier,parent_result,atribute of split,id_child1, id_child2, table
-        node.child_left = new Node(node.id + 1, "yes", -1, -1, -1, table_left);
-        node.child_right = new Node(node.id + 2, "no", -1, -1, -1, table_right);
-        node.id_child_left = node.id + 1;
-        node.id_child_right = node.id + 2;
+        node.child_left = new Node(node.id + node.id, "yes", -1, -1, -1, table_left);
+        node.child_right = new Node(node.id + node.id+1, "no", -1, -1, -1, table_right);
+        node.id_child_left = node.id + node.id;
+        node.id_child_right = node.id + node.id+1;
 
 
         TreeBuilder builder = new TreeBuilder();
@@ -78,9 +78,19 @@ class TreeBuilder {
             entropy_child_right = table_right.entropy();
             if (entropy_child_right==-1)
                 continue;
+            /*System.out.println("entropy_parent= " + entropy_parent);
+            System.out.println("entropy_child_leftt= " + entropy_child_left);
+            System.out.println("entropy_child_right= " + entropy_child_right);
+            System.out.println("table_left_rows= " + table_left.rows());
+            System.out.println("table_right_rows= " + table_left.rows());
+            System.out.println("table_current_node_rows= " + node.table.rows());*/
+            
             information_gain = entropy_parent - (entropy_child_left * (double) table_left.rows() / (double) node.table.rows() + (double) entropy_child_right * (double) table_right.rows() / (double) node.table.rows());
+            //System.out.println("atribute " + atr + " has IG---------- " + information_gain );
             if (information_gain > max_IG) {
+                //System.out.println("making atribute" + atr + "the best because it has ig bigger then " + max_IG);
                 bestAtr = atr;
+                max_IG=information_gain;
             }
         }
 
