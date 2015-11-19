@@ -6,6 +6,7 @@
 package machine.learning.tdidt;
 
 import java.util.ArrayList;
+import java.util.Collections;
 
 /**
  *
@@ -149,6 +150,35 @@ class Table {
                     negatives++;
         }
         return negatives;
+    }
+    
+    public void union(Table otherTable){
+    	this.data.addAll(otherTable.data);
+    }
+    
+    public Table shuffleAndSplit()
+    {
+    	//Randomize the Array
+    	Collections.shuffle(this.data);
+    	
+    	ArrayList<ArrayList<Integer>> testdata = new ArrayList<>();
+    	ArrayList<ArrayList<Integer>> lerndata = new ArrayList<>();
+    	
+    	//Test Data is 1/3 plus the Size Modulo 3
+    	testdata.addAll(this.data.subList(0, this.data.size() / 3 + this.data.size()%3 ));
+    	lerndata.addAll(this.data.subList(this.data.size() / 3 + this.data.size()%3, this.data.size()));
+    	
+    	System.out.println("TestCount: " + testdata.size());
+    	System.out.println("LernCount: " + lerndata.size());
+    	
+    	Table test_table= new Table();
+    	test_table.data = testdata;
+    	
+    	//Current Object is new LernTable
+    	this.data = lerndata;
+    	
+    	//Test Data would be returned
+    	return test_table;
     }
 
 }

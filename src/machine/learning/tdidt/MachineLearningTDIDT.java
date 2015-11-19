@@ -35,10 +35,18 @@ public class MachineLearningTDIDT {
         //The atribute with the higher information gain will become a node
             //Let's image it is
             
-        
+    	//Grab the lerarning data
         Table table= new Table();
         TableReader reader = new TableReader();
         reader.read("SPECT.train",table);
+        
+        //Grab the test data
+        Table test_table= new Table();
+        reader.read("SPECT.test",test_table);
+        
+        //Randomize Tables
+        table.union(test_table);
+        test_table = table.shuffleAndSplit();
         
         //Printing out the table
         table.print();
@@ -54,9 +62,7 @@ public class MachineLearningTDIDT {
         writer.write(root);
         
         
-        //Grab the test data
-        Table test_table= new Table();
-        reader.read("SPECT.test",test_table);
+
       
         Tester tester=new Tester();
         int successes=0;
