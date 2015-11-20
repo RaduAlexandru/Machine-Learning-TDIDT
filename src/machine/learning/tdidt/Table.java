@@ -109,9 +109,9 @@ class Table {
         double divison= this.positives() / this.rows();
         double log_1=log2(this.positives() / this.rows());
         
-        /*System.out.println("positives" + this.positives());
-        System.out.println("negatives" + this.negatives());
-        System.out.println("total" + this.rows());*/
+        System.out.println("entropy.positives" + this.positives());
+        System.out.println("entropy.negatives" + this.negatives());
+        System.out.println("total" + this.rows());
         
         if (this.positives()==0 || this.negatives()==0)  //The log will be zero so we retun 0 as to show there is no entropy
             return 0.0;

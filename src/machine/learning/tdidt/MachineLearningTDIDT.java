@@ -35,6 +35,11 @@ public class MachineLearningTDIDT {
         //The atribute with the higher information gain will become a node
             //Let's image it is
             
+        double average_accuracy=0.0;
+            
+        for (int i = 0; i < 10; i++) {
+            
+        
     	//Grab the lerarning data
         Table table= new Table();
         TableReader reader = new TableReader();
@@ -49,7 +54,7 @@ public class MachineLearningTDIDT {
         test_table = table.shuffleAndSplit();
         
         //Printing out the table
-        table.print();
+        //table.print();
         
         //create a node with parameters: identifier,parent_result,atribute of split,id_child1, id_child2, table
         Node root=new Node(1,"-1",-1,-1,-1,table);
@@ -68,9 +73,13 @@ public class MachineLearningTDIDT {
         int successes=0;
         successes=tester.test(root,test_table);
         double accuracy=(double)successes/(double)test_table.rows();
-        System.out.println("Acuracy of " + accuracy);
+        //System.out.println("Acuracy of " + accuracy);
         
- 
+        average_accuracy+=accuracy;
+        
+        }
+        
+        System.out.println("Acuracy of " + average_accuracy/10);
         
         
         

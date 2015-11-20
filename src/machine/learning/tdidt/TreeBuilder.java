@@ -78,17 +78,17 @@ class TreeBuilder {
             entropy_child_right = table_right.entropy();
             if (entropy_child_right==-1)
                 continue;
-            /*System.out.println("entropy_parent= " + entropy_parent);
+            System.out.println("entropy_parent= " + entropy_parent);
             System.out.println("entropy_child_leftt= " + entropy_child_left);
             System.out.println("entropy_child_right= " + entropy_child_right);
-            System.out.println("table_left_rows= " + table_left.rows());
-            System.out.println("table_right_rows= " + table_left.rows());
-            System.out.println("table_current_node_rows= " + node.table.rows());*/
+            //System.out.println("table_left_rows= " + table_left.rows());
+            //System.out.println("table_right_rows= " + table_left.rows());
+            //System.out.println("table_current_node_rows= " + node.table.rows());
             
             information_gain = entropy_parent - (entropy_child_left * (double) table_left.rows() / (double) node.table.rows() + (double) entropy_child_right * (double) table_right.rows() / (double) node.table.rows());
-            //System.out.println("atribute " + atr + " has IG---------- " + information_gain );
+            System.out.println("atribute " + atr + " has IG---------- " + information_gain );
             if (information_gain > max_IG) {
-                //System.out.println("making atribute" + atr + "the best because it has ig bigger then " + max_IG);
+                System.out.println("making atribute" + atr + "the best because it has ig bigger then " + max_IG);
                 bestAtr = atr;
                 max_IG=information_gain;
             }
